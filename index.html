@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sitemap Visualizer</title>
+    <meta
+      name="description"
+      content="A browser-based SEO and developer tool for parsing, grouping, visualizing, and exporting sitemap.xml URL structures."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero" aria-labelledby="page-title">
+        <p class="hero__eyebrow">SEO Developer Tool</p>
+        <h1 id="page-title">Sitemap Visualizer</h1>
+        <p>
+          Import or paste a sitemap.xml file, parse every URL, group pages by
+          domain and path, then explore the site as a collapsible visual tree.
+        </p>
+      </section>
+
+      <section class="grid workspace-grid" aria-label="Sitemap workspace">
+        <article class="card">
+          <header class="card__header">
+            <div>
+              <h2>Sitemap Input</h2>
+              <p>Paste XML directly or import a local .xml sitemap file.</p>
+            </div>
+          </header>
+
+          <div class="card__body input-stack">
+            <label for="sitemap-input">Sitemap XML</label>
+            <textarea
+              id="sitemap-input"
+              spellcheck="false"
+              placeholder="Paste sitemap.xml content here..."
+            ></textarea>
+
+            <label for="file-input">Import XML File</label>
+            <input
+              id="file-input"
+              type="file"
+              accept=".xml,text/xml,application/xml"
+            />
+
+            <div class="action-row" aria-label="Sitemap actions">
+              <button
+                id="parse-button"
+                class="button button--primary"
+                type="button"
+              >
+                Parse Sitemap
+              </button>
+              <button
+                id="sample-button"
+                class="button button--secondary"
+                type="button"
+              >
+                Load Sample Sitemap
+              </button>
+              <button
+                id="clear-button"
+                class="button button--danger"
+                type="button"
+              >
+                Clear
+              </button>
+            </div>
+
+            <div
+              id="status-message"
+              class="status"
+              role="status"
+              aria-live="polite"
+            >
+              Ready. Paste a sitemap or load the sample to begin.
+            </div>
+          </div>
+        </article>
+
+        <aside class="card" aria-labelledby="export-title">
+          <header class="card__header">
+            <div>
+              <h2 id="export-title">Export</h2>
+              <p>
+                Copy or download parsed sitemap data for audits and
+                documentation.
+              </p>
+            </div>
+          </header>
+
+          <div class="card__body input-stack">
+            <div class="export-grid">
+              <button id="copy-button" class="button" type="button">
+                Copy URL List
+              </button>
+              <button id="download-text-button" class="button" type="button">
+                Download URL List
+              </button>
+              <button id="download-json-button" class="button" type="button">
+                Download JSON Structure
+              </button>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="stats-bar" aria-label="Sitemap statistics">
+        <div class="stat-pill">
+          <span>Total URLs</span>
+          <strong id="stat-total">0</strong>
+        </div>
+        <div class="stat-pill">
+          <span>Domains Found</span>
+          <strong id="stat-domains">0</strong>
+        </div>
+        <div class="stat-pill">
+          <span>Top-Level Sections</span>
+          <strong id="stat-sections">0</strong>
+        </div>
+        <div class="stat-pill">
+          <span>Max Path Depth</span>
+          <strong id="stat-depth">0</strong>
+        </div>
+        <div class="stat-pill">
+          <span>XML Size</span>
+          <strong id="stat-size">0 B</strong>
+        </div>
+      </section>
+
+      <section class="grid workspace-grid">
+        <article class="card" aria-labelledby="tree-title">
+          <header class="card__header">
+            <div>
+              <h2 id="tree-title">Visual Tree</h2>
+              <p>Collapse and expand domains, folders, and pages.</p>
+            </div>
+          </header>
+
+          <div class="card__body">
+            <div id="tree-panel" class="panel">
+              <div class="empty-state">No sitemap parsed yet.</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" aria-labelledby="list-title">
+          <header class="card__header">
+            <div>
+              <h2 id="list-title">URL List</h2>
+              <p>Search across URL text, domains, and path segments.</p>
+            </div>
+          </header>
+
+          <div class="card__body input-stack">
+            <label for="search-input">Search URLs</label>
+            <input
+              id="search-input"
+              type="search"
+              placeholder="Filter by domain, path, or URL..."
+              autocomplete="off"
+            />
+
+            <div id="url-list" class="panel">
+              <div class="empty-state">Parsed URLs will appear here.</div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <p class="footer-note">
+        Browser-only sitemap parsing. No uploads. No frameworks. No build step.
+      </p>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
